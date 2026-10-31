@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# CodeRabbit reviews pull requests once the CodeRabbit GitHub App is installed
+# on this repository. Repository guidance lives in AGENTS.md and CONTRIBUTING.md.
+language: en-US
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  auto_review:
+    enabled: true
+    drafts: false
+  path_filters:
+    - "!dist/**"
+    - "!skills/**"
+    - "!node_modules/**"
+    - "!package-lock.json"
+    - "!docs/public/product-catalog.json"
+    - "!docs/verification/managed-conformance-*.json"
+    - "!CHANGELOG.md"
+  path_instructions:
+    - path: "**/*"
+      instructions: >-
+        Follow AGENTS.md and CONTRIBUTING.md. Prioritize correctness bugs,
+        Evidence provenance, resource ownership and cleanup, and the inward
+        dependency direction (domain, provider adapters, application, CLI/MCP).
+        Flag speculative robustness additions rather than requesting them.
+    - path: "src/**/*.ts"
+      instructions: >-
+        Expected failures should use the tagged error algebra and Result.
+        Process supervision must reuse src/process/ primitives.
+    - path: "website/**"
+      instructions: >-
+        Check changes against website/style-guide.md and keep shared regions
+        in sync with website/templates/.
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "AGENTS.md"
+      - "CONTRIBUTING.md"
+      - "website/style-guide.md"
+chat:
+  auto_reply: true
